@@ -1,0 +1,41 @@
+{
+  "name": "fit-flex-social-media",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server/index.js",
+    "seed": "node server/initial-data/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamieeunice/fit-flex.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamieeunice/fit-flex/issues"
+  },
+  "homepage": "https://github.com/jamieeunice/fit-flex#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "faker": "^5.5.3",
+    "helmet": "^4.6.0",
+    "morgan": "^1.10.0",
+    "node": "^16.4.0",
+    "nodemon": "^2.0.11",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.4",
+    "prettier": "^2.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.0",
+    "sequelize": "^6.6.5",
+    "sqlite3": "^5.0.2",
+    "webpack": "^5.44.0"
+  }
+}
