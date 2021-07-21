@@ -7,7 +7,7 @@ Fit Flex is a social media app for fitness enthusiasts.
 * [Future Features](#future-features)
 
 ## Demo
-For the moment, here's the Figma design for this application: [click here](https://www.figma.com/file/ONjD6H2cKiK8OwQ4jDj5GK/Untitled?node-id=2%3A2)
+For the moment, here's the [Figma](https://www.figma.com/file/ONjD6H2cKiK8OwQ4jDj5GK/Untitled?node-id=2%3A2) design for this application.
 
 ## Setup
 To run this project, install it locally using npm:
