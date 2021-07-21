@@ -19,4 +19,4 @@ $ npm run start
 Watch it live on `http://localhost:8080`
 
 ## Future Features
-For current and future feature please visit the project board [here](https://github.com/jamieeunice/fit-flex/projects/1)
+For current and future feature please visit the project board [here](https://github.com/jamieeunice/fit-flex/projects/1) .
