@@ -1,0 +1,31 @@
+:root {
+  --background: #fff;
+  --icon-color: #000000;
+  --nav-color: #f0f0ea;
+  --everything-blue: #44a1a0;
+  --darkest-blue: #0d5c63;
+  --middle-blue: #247b7b;
+  --lightest-blue: #78cdd7;
+}
+
+* {
+  box-sizing: border-box;
+  font-style: normal;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+}
+
+h1 {
+  user-select: none;
+}

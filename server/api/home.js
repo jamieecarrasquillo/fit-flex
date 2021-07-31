@@ -1,16 +1,36 @@
 const router = require('express').Router();
-const { Post, Comment } = require('../db/models');
+const Op = require('Sequelize').Op;
+const { Post, Like, User } = require('../db/models');
+const { getAllComments, getLikes, followingIds } = require('../../utils');
 
 module.exports = router;
 
 //To Do
 //get all post from people you follow
-router.use('/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
+  // get user id from user signed in, then
+  // call isFollowing to get ids from people
+  // the user follows
+  // if no following return 'no following found' or err
+  // after that lets sort feed posts by date
   try {
-    const posts = await Post.findAll();
-    // let comments = await posts[0].getComments();
-    // console.log(comments);
-    res.json(posts).status(200);
+    // remember to find the logged in user id and pass it as argument
+    let followingArray = await followingIds(User);
+    if (followingArray === []) {
+      throw new Error('No Followers found.');
+    }
+
+    const posts = await Post.findAll({
+      where: {
+        UserId: {
+          [Op.in]: followingArray
+        }
+      }
+    });
+    let comments = await getAllComments(posts);
+    let likes = await getLikes(Like, posts);
+
+    res.json({ posts, comments, likes }).status(200);
   } catch (err) {
     next(err);
   }
@@ -18,12 +38,27 @@ router.use('/', async (req, res, next) => {
 
 //To Do
 //get all post from sugested people to follow
+router.get('/explore', async (req, res, next) => {
+  try {
+    const posts = await Post.findAll();
+    let comments = await getAllComments(posts);
+    let likes = await getLikes(Like, posts);
+
+    res.json({ posts, comments, likes }).status(200);
+  } catch (err) {
+    next(err);
+  }
+});
 
 //get single post view with its own comments
-router.get('/:id', async (req, res, next) => {
+router.get('/:postId', async (req, res, next) => {
   try {
-    let post = await Post.findByPk(req.params.id);
-    res.json(post).status(200);
+    let post = await Post.findByPk(req.params.postId);
+    let comments = await post.getComments();
+    const likes = await Like.findAndCountAll({
+      where: { PostId: req.params.postId }
+    });
+    res.json({ post, comments, likes }).status(200);
   } catch (err) {
     next(err);
   }
@@ -62,7 +97,7 @@ router.put('/', async (req, res, next) => {
 });
 
 //user delete post
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:postId', async (req, res, next) => {
   try {
     await Post.destroy({ where: { id: req.params.id } });
     res.sendStatus(204);

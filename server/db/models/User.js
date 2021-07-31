@@ -19,9 +19,10 @@ const User = sequelize.define(
     },
     email: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
       validate: {
-        isEmail: true
+        isEmail: { msg: 'Must be a valid email address' }
       }
     },
     firstName: {
@@ -49,6 +50,9 @@ const User = sequelize.define(
     website: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    gender: {
+      type: DataTypes.ENUM('female', 'male')
     }
   },
   { paranoid: true, deletedAt: 'destroyTime' }

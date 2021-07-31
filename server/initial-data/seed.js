@@ -4,8 +4,6 @@ const {
   Post,
   Messages,
   Blocked,
-  Follower,
-  Following,
   Like,
   Comment,
   Tags
@@ -14,7 +12,7 @@ const {
 
 const seed = async () => {
   try {
-    await Promise.all([
+    let instances = await Promise.all([
       User.create({
         username: 'jaeu',
         password: '12345',
@@ -25,7 +23,8 @@ const seed = async () => {
         profileImage:
           'https://media-exp3.licdn.com/dms/image/C4E03AQGr2JhwHUAbXg/profile-displayphoto-shrink_800_800/0/1593014512052?e=1631145600&v=beta&t=T2y_VlkiGChXiO5wtUpBumN_OLVAHFQgKDgXwe3nbfU',
         bio: "Let's grow together.",
-        website: 'instagram.com/jeimiyuniseu'
+        website: 'instagram.com/jeimiyuniseu',
+        gender: 'female'
       }),
       User.create({
         username: 'jonrolu',
@@ -37,17 +36,18 @@ const seed = async () => {
         profileImage:
           'https://media-exp3.licdn.com/dms/image/C4D03AQHTjEVkhkm6Eg/profile-displayphoto-shrink_800_800/0/1553806354877?e=1631750400&v=beta&t=9MlfQkkSFCauskb0Oia3uNBZ2UsiMOnbZe2P4LbiimY',
         bio: "Let's grow together.",
-        website: 'instagram.com/jonrolu'
+        website: 'instagram.com/jonrolu',
+        gender: 'male'
       }),
       Post.create({
         image:
           'https://media-exp3.licdn.com/dms/image/C4E03AQGr2JhwHUAbXg/profile-displayphoto-shrink_800_800/0/1593014512052?e=1631145600&v=beta&t=T2y_VlkiGChXiO5wtUpBumN_OLVAHFQgKDgXwe3nbfU',
         description: 'First image here.',
-        location: 'NYC',
         UserId: 1
       }),
       Comment.create({
         content: 'So beautif.',
+        PostId: 1,
         UserId: 1
       }),
       Messages.create({
@@ -55,8 +55,23 @@ const seed = async () => {
         senderId: 1,
         receiverId: 2,
         UserId: 1
+      }),
+      Like.create({
+        like: true,
+        PostId: 1,
+        UserId: 1
+      }),
+      Tags.create({
+        hashtags: '#fitness #goals'
+      }),
+      Blocked.create({
+        ammount: 1,
+        status: 'unblocked'
       })
     ]);
+
+    // instances[0] is following instances[1]
+    await instances[0].addFollowee(instances[1]);
 
     // for (let i = 0; i < 50; i++) {
     //   let username = faker.name.userName();

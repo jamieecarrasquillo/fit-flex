@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Proza+Libre&display=swap');
+
+.nav-container {
+  background-color: var(--nav-color);
+  display: flex;
+  height: 70px;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  top: 0;
+  width: 100%;
+}
+
+.left-nav {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-text h1 {
+  font-family: 'Proza Libre', sans-serif;
+  text-align: center;
+  cursor: pointer;
+}
+
+.middle-nav {
+  flex: 1;
+}
+
+.search-bar-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar {
+  color: #8e8e8e;
+  text-align: center;
+  padding: 3px 3px;
+  width: 250px;
+  background-color: var(--background);
+  border-radius: 2px;
+  font-family: 'Proza Libre', sans-serif;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.search-icon {
+  margin-right: 5px;
+  width: 10px;
+}
+
+.seach-text {
+  width: 10px;
+}
+
+.right-nav {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-icon {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.inner-icon img {
+  border: 2px solid #ffffff;
+}
